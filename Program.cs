@@ -1,6 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Diagnostics;
 using System.Drawing;
 using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
 using studentGrades.entities;
 
 
@@ -10,8 +12,12 @@ internal class Program
 
         bool contWhile = true;
         int respMainMen;
+        var quizExample = new ArrayList()
+                    {
+                        1.2, 3.0, 4.5, 4.0
+                    };
         List<Student> studentList = new List<Student>();
-        Student newStudent = new Student("12345", "samir", "correo@correo", 20, "cra12 #2-19");
+        Student newStudent = new Student("12345", "samir", "correo@correo", 20, "cra12 #2-19", quizExample);
         studentList.Add(newStudent);
         /*  Console.WriteLine(newStudent.Code); */
 
@@ -64,17 +70,7 @@ internal class Program
                                 break;
                             case 2:
                                 Console.Clear();
-                                if (studentList.Count() < 1) {
-                                    Console.WriteLine("There are no students in the database");
-                                    Console.ReadKey();
-                                } else {
-                                    Console.WriteLine("{0,-20} {1, -30} {2, -5} {3,-35} {4,3}" , "Id", "Name", "Age", "Email", "Address");
-                                    foreach (Student stud in studentList)
-                                    {
-                                        Console.WriteLine("{0,-20} {1, -30} {2, -5} {3,-35} {4,3}", stud.Code, stud.Name, stud.Age, stud.Email, stud.Address);
-                                    }
-                                    Console.ReadKey();
-                                }
+                                ListData(studentList, "stud", "");
                                 break;
                             case 3:
                                 contStud = false;
@@ -100,10 +96,7 @@ internal class Program
                         switch (resGra)
                         {
                             case 1:
-                                string stuCode;
-                                Console.WriteLine($"Enter the Student code: ");
-                                stuCode = Console.ReadLine();
-                                Console.WriteLine(SearchStu(stuCode, studentList));
+                                SearchStu(studentList);
                                 Console.ReadKey();
                                 break;
                             case 2:
@@ -120,13 +113,35 @@ internal class Program
 
                     break;
                 case 3:
-                    Console.Clear();
-                    Int16 resRep; 
-                    Console.WriteLine("{0,30}", " Grade Report \n");
-                    Console.WriteLine("{0,3}", " 1) -> Generate Grade Report");
-                    Console.WriteLine("{0,3}", " 2) -> Exit App");
-                    Console.WriteLine("Enter the number of the option you want: ");
-                    resRep = Convert.ToInt16(Console.ReadLine());
+
+                    bool contGradRep = true;
+                    while (contGradRep) {
+                        Console.Clear();
+                        Int16 resRep; 
+                        Console.WriteLine("{0,30}", " Grade Report \n");
+                        Console.WriteLine("{0,3}", " 1) -> Generate Grade Report");
+                        Console.WriteLine("{0,3}", " 2) -> Exit App");
+                        Console.WriteLine("Enter the number of the option you want: ");
+                        resRep = Convert.ToInt16(Console.ReadLine());
+                        switch (resRep)
+                        {
+                            case 1:
+                                SearchStu(studentList);
+                                Console.ReadKey();
+                                break;
+                            case 2:
+                                ListData(studentList,"", "");
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                contGradRep = false;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
                     break;
                 case 4:
                     contWhile = false;
@@ -168,23 +183,63 @@ internal class Program
         return dataStu;
     }
 
-    public static bool SearchStu(string code, List<Student> lista){
+    public static void SearchStu(List<Student> lista){
+        string stuCode;
+        Console.WriteLine($"Enter the Student code: ");
+        stuCode = Console.ReadLine();
         if (lista.Count() < 1) {
             Console.WriteLine("There are no students in the database");
             Console.ReadKey();
-            return false;
         } else {
             foreach (Student stud in lista)
             {
-                if (stud.Code == code) {
-                    return true;
+                if (stud.Code == stuCode) {
+                    ArrayList studentQuiz = new ArrayList();
+                    studentQuiz = stud.GetQuizzes();
+                    if (studentQuiz.Count <= 4){
+                        decimal quizGrade;
+                        Console.WriteLine("Enter the Quiz Grade: ");
+                        quizGrade = Convert.ToDecimal(Console.ReadLine());
+                        stud.AddQuizzes(quizGrade);
+                    } else {
+                        Console.WriteLine("All quiz grades have already been Added. ");
+                         Console.ReadKey();
+                    }
+
                 } else {
                     Console.WriteLine("There is no student with that code");
                     Console.ReadKey();
-                    return false;
                 }
             }
-            return false;
+        }
+    }
+
+    public static void ListData(List<Student> lista, string opcion, string quizzNots){
+        if (lista.Count() < 1) {
+            Console.WriteLine("There are no students in the database");
+            Console.ReadKey();
+        } else {
+            if (opcion == "stud") {
+                Console.WriteLine("{0,-20} {1, -30} {2, -5} {3,-35} {4,3}" , "Id", "Name", "Age", "Email", "Address");
+                foreach (Student stud in lista)
+                {
+                    Console.WriteLine("{0,-20} {1, -30} {2, -5} {3,-35} {4,3}", stud.Code, stud.Name, stud.Age, stud.Email, stud.Address);
+                }
+                Console.ReadKey();
+            } else {
+                Console.WriteLine("{0,-20} {1, -35} {2, 18}" , "Id", "Name", "Quizzes");
+                foreach (Student stud in lista)
+                {
+
+                    foreach (var quiz in stud.GetQuizzes()) {
+
+                        quizzNots+= $"[{quiz}] -  ";
+                    }
+                    Console.WriteLine("{0,-20} {1, -35} {2, 18}", stud.Code, stud.Name, quizzNots.Substring(0,quizzNots.Length - 3));
+
+                }
+                Console.ReadKey();
+            }
         }
     }
 

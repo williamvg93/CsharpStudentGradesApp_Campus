@@ -1,4 +1,6 @@
 
+using System.Collections;
+
 namespace studentGrades.entities;
 
 public class Student
@@ -8,6 +10,7 @@ public class Student
     private string email;
     private int age;
     private string address;
+    private ArrayList quizzes = new ArrayList();
 
 
     public string Code {
@@ -35,14 +38,23 @@ public class Student
         set {address = value;}
     }
 
+    public void AddQuizzes(decimal quiz) {
+        quizzes.Add(quiz);
+    }
+
+    public ArrayList GetQuizzes() {
+        return quizzes;
+    }
+
     public Student(){}
 
-    public Student(string nId, string nName, string nEmail, int nAge, string nAddress){
+    public Student(string nId, string nName, string nEmail, int nAge, string nAddress, ArrayList nQuizzes) {
         this.code = nId;
         this.name = nName;
         this.email = nEmail;
         this.age = nAge;
         this.address = nAddress;
+        this.quizzes = nQuizzes;
     }
 
 }
