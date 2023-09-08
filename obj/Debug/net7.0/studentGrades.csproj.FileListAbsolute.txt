@@ -12,3 +12,17 @@ C:\Users\APM02-066\Documents\Trowa\.net_c#\Ejercicios\studentGrades\obj\Debug\ne
 C:\Users\APM02-066\Documents\Trowa\.net_c#\Ejercicios\studentGrades\obj\Debug\net7.0\studentGrades.pdb
 C:\Users\APM02-066\Documents\Trowa\.net_c#\Ejercicios\studentGrades\obj\Debug\net7.0\studentGrades.genruntimeconfig.cache
 C:\Users\APM02-066\Documents\Trowa\.net_c#\Ejercicios\studentGrades\obj\Debug\net7.0\ref\studentGrades.dll
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\bin\Debug\net7.0\studentGrades.exe
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\bin\Debug\net7.0\studentGrades.deps.json
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\bin\Debug\net7.0\studentGrades.runtimeconfig.json
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\bin\Debug\net7.0\studentGrades.dll
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\bin\Debug\net7.0\studentGrades.pdb
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.AssemblyInfoInputs.cache
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.AssemblyInfo.cs
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.csproj.CoreCompileInputs.cache
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.dll
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\refint\studentGrades.dll
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.pdb
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\studentGrades.genruntimeconfig.cache
+D:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\obj\Debug\net7.0\ref\studentGrades.dll
