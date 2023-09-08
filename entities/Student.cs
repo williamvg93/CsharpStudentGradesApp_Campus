@@ -3,14 +3,14 @@ namespace studentGrades.entities;
 
 public class Student
 {
-    private int code;
+    private string code;
     private string name;
     private string email;
     private int age;
     private string address;
 
 
-    public int Code {
+    public string Code {
         get {return code;}
         set {code = value;}
     }
@@ -37,7 +37,7 @@ public class Student
 
     public Student(){}
 
-    public Student(int nId, string nName, string nEmail, int nAge, string nAddress){
+    public Student(string nId, string nName, string nEmail, int nAge, string nAddress){
         this.code = nId;
         this.name = nName;
         this.email = nEmail;

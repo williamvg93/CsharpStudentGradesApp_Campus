@@ -4,8 +4,6 @@ using System.Reflection.Metadata;
 using studentGrades.entities;
 
 
-/* Student newStudent = new Student(12345, "william", "correo", 30, "cra#122");
-Console.WriteLine(newStudent.Code); */
 internal class Program
 {
     private static void Main(string[] args){
@@ -13,6 +11,9 @@ internal class Program
         bool contWhile = true;
         int respMainMen;
         List<Student> studentList = new List<Student>();
+        Student newStudent = new Student("12345", "samir", "correo@correo", 20, "cra12 #2-19");
+        studentList.Add(newStudent);
+        /*  Console.WriteLine(newStudent.Code); */
 
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Magenta;
@@ -54,16 +55,11 @@ internal class Program
                             case 1:
                                 Console.Clear();
                                 Student newStud = new Student();
-                                Console.WriteLine("Enter the student Code: ");
-                                newStud.Code = Convert.ToInt32(Console.ReadLine());
-                                Console.WriteLine("Enter the student Name: ");
-                                newStud.Name = Console.ReadLine();
-                                Console.WriteLine("Enter the student Age: ");
-                                newStud.Age = Convert.ToInt16(Console.ReadLine());
-                                Console.WriteLine("Enter the student Email: ");
-                                newStud.Email = Console.ReadLine();
-                                Console.WriteLine("Enter the student Address: ");
-                                newStud.Address = Console.ReadLine();
+                                newStud.Code = GetExactVal("Code", 15, "");
+                                newStud.Name = GetExactVal("Name", 40, "");    
+                                newStud.Age = Convert.ToInt16(GetExactVal("Age", 3, ""));
+                                newStud.Email = GetExactVal("Email", 40, "");
+                                newStud.Address = GetExactVal("Address", 35, "");
                                 studentList.Add(newStud);
                                 break;
                             case 2:
@@ -90,15 +86,38 @@ internal class Program
                     }
                     break; 
                 case 2:
-                    Console.Clear();
-                    Int16 resGra; 
-                    Console.WriteLine("{0,30}", " Manage Student Grades \n");
-                    Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
-                    Console.WriteLine("{0,3}", " 2) -> Add HomeWork Grade");
-                    Console.WriteLine("{0,3}", " 3) -> Add Exam Garde");
-                    Console.WriteLine("{0,3}", " 4) -> Exit App");
-                    Console.WriteLine("Enter the number of the option you want: ");
-                    resGra = Convert.ToInt16(Console.ReadLine());
+                    bool contGrad = true;
+                    while (contGrad) {
+                        Console.Clear();
+                        Int16 resGra; 
+                        Console.WriteLine("{0,30}", " Manage Student Grades \n");
+                        Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
+                        Console.WriteLine("{0,3}", " 2) -> Add HomeWork Grade");
+                        Console.WriteLine("{0,3}", " 3) -> Add Exam Garde");
+                        Console.WriteLine("{0,3}", " 4) -> Exit App");
+                        Console.WriteLine("Enter the number of the option you want: ");
+                        resGra = Convert.ToInt16(Console.ReadLine());
+                        switch (resGra)
+                        {
+                            case 1:
+                                string stuCode;
+                                Console.WriteLine($"Enter the Student code: ");
+                                stuCode = Console.ReadLine();
+                                Console.WriteLine(SearchStu(stuCode, studentList));
+                                Console.ReadKey();
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                contGrad = false;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
                     break;
                 case 3:
                     Console.Clear();
@@ -129,6 +148,42 @@ internal class Program
             return newElem; */
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public static string GetExactVal(string msg, int dataLen, string dataStu){
+        bool contGetExa = true;
+        while (contGetExa)
+        {
+            Console.WriteLine($"Enter the Student {msg}");
+            dataStu = Console.ReadLine();
+            if (CheckData(dataStu, dataLen))
+            {
+                contGetExa = false;
+            } else {
+                Console.WriteLine($"The Student {msg} must be at least {dataLen} characters");
+            }
+        }
+        return dataStu;
+    }
+
+    public static bool SearchStu(string code, List<Student> lista){
+        if (lista.Count() < 1) {
+            Console.WriteLine("There are no students in the database");
+            Console.ReadKey();
+            return false;
+        } else {
+            foreach (Student stud in lista)
+            {
+                if (stud.Code == code) {
+                    return true;
+                } else {
+                    Console.WriteLine("There is no student with that code");
+                    Console.ReadKey();
+                    return false;
+                }
+            }
             return false;
         }
     }
