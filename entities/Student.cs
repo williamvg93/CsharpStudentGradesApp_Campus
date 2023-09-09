@@ -10,7 +10,9 @@ public class Student
     private string email;
     private int age;
     private string address;
-    private ArrayList quizzes = new ArrayList();
+    private ArrayList quizzes = new ArrayList(){0,0,0,0};
+    private ArrayList tasks = new ArrayList(){0,0};
+    private ArrayList exams = new ArrayList(){0,0,0};
 
 
     public string Code {
@@ -38,23 +40,38 @@ public class Student
         set {address = value;}
     }
 
-    public void AddQuizzes(decimal quiz) {
-        quizzes.Add(quiz);
+    public void UpdQuizzes(int ranQuiz, decimal quiz) {
+        quizzes.Insert(ranQuiz,quiz);
     }
 
     public ArrayList GetQuizzes() {
         return quizzes;
     }
 
+    public void UpdTasks(int ranTask, decimal task) {
+        tasks.Insert(ranTask,task);
+    }
+
+    public ArrayList GetTasks() {
+        return tasks;
+    }
+
+    public void UpdExams(int ranExam ,decimal exam) {
+        exams.Insert(ranExam,exam);
+    }
+
+    public ArrayList GetExams() {
+        return exams;
+    }
+
     public Student(){}
 
-    public Student(string nId, string nName, string nEmail, int nAge, string nAddress, ArrayList nQuizzes) {
+    public Student(string nId, string nName, string nEmail, int nAge, string nAddress) {
         this.code = nId;
         this.name = nName;
         this.email = nEmail;
         this.age = nAge;
         this.address = nAddress;
-        this.quizzes = nQuizzes;
     }
 
 }

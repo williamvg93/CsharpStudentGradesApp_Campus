@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\APM02-066\\Documents\\Trowa\\.net_c#\\Ejercicios\\studentGrades\\studentGrades.csproj": {}
+    "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\studentGrades.csproj": {}
   },
   "projects": {
-    "C:\\Users\\APM02-066\\Documents\\Trowa\\.net_c#\\Ejercicios\\studentGrades\\studentGrades.csproj": {
+    "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\studentGrades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-066\\Documents\\Trowa\\.net_c#\\Ejercicios\\studentGrades\\studentGrades.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
         "projectName": "studentGrades",
-        "projectPath": "C:\\Users\\APM02-066\\Documents\\Trowa\\.net_c#\\Ejercicios\\studentGrades\\studentGrades.csproj",
-        "packagesPath": "C:\\Users\\APM02-066\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-066\\Documents\\Trowa\\.net_c#\\Ejercicios\\studentGrades\\obj\\",
+        "projectPath": "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-066\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
