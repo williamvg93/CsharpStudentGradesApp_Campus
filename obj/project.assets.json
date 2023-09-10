@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\USER\\.nuget\\packages\\": {}
+    "C:\\Users\\Home\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
+      "projectUniqueName": "D:\\Programacion\\Campus2023\\C#\\Class\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
       "projectName": "studentGrades",
-      "projectPath": "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
-      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\Documents\\Programación\\Campus\\C#\\Projects\\CsharpStudentGradesApp_Campus\\obj\\",
+      "projectPath": "D:\\Programacion\\Campus2023\\C#\\Class\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
+      "packagesPath": "C:\\Users\\Home\\.nuget\\packages\\",
+      "outputPath": "D:\\Programacion\\Campus2023\\C#\\Class\\CsharpStudentGradesApp_Campus\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Home\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
