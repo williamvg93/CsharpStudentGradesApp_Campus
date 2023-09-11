@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 using studentGrades.entities;
 
@@ -14,7 +15,7 @@ internal class Program
         bool contWhile = true;
         int respMainMen;
 
-        List<Student> studentList = new List<Student>();
+        
 /*         Student newStudent = new Student("12345", "samir", "correo@correo", 20, "cra12 #2-19");
         Student newStudent2 = new Student("123456789123456", "samir stiven villamizar garcés", "samir@correo.com", 25, "cra12 #2-19 mirador");
         studentList.Add(newStudent);
@@ -25,7 +26,7 @@ internal class Program
         /*  Console.WriteLine(newStudent.Code); */
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Magenta;
-
+        List<Student> studentList = new List<Student>();
 
         while (contWhile)
         {
@@ -40,6 +41,12 @@ internal class Program
             Console.WriteLine("{0,3}", " 2) -> Manage Student Grades");
             Console.WriteLine("{0,3}", " 3) -> Generate Grade Report");
             Console.WriteLine("{0,3}", " 4) -> Exit App \n");
+
+            Console.WriteLine(CheckValue("holasss1", "^[a-zA-Z](5)$"));
+            Console.WriteLine(CheckValue("hol", "^[a-zA-Z](5)$"));
+            Console.WriteLine(CheckValue("hol1", "^[a-zA-Z](5)$"));
+            Console.WriteLine(CheckValue("hola", "^[a-zA-Z](5)$"));
+            
 
             Console.WriteLine("Enter the number of the option you want: ");
             respMainMen = Convert.ToInt16(Console.ReadLine());
@@ -167,6 +174,29 @@ internal class Program
         
         }
     }
+
+    public static string CheckValue(string valType, string msg, string regExp, string dataStu){
+        /* return Regex.IsMatch(data, @"^[a-zA-Z](5)$"); */
+
+        /* return Regex.IsMatch(dataStu, @regExp); */
+
+        bool contGetExa = true;
+        while (contGetExa)
+        {
+            if (valType == "string"){
+                Console.WriteLine($"Enter the Student {msg}");
+                dataStu = Console.ReadLine();
+                if (Regex.IsMatch(dataStu, @regExp))
+                {
+                    contGetExa = false;
+                } else {
+                    Console.WriteLine($"The Student {msg} must be at least {dataLen} characters");   
+                }
+            }
+        }
+        return dataStu;
+    }
+
 
     public static string GetExactVal(string msg, int dataLen, string dataStu){
         bool contGetExa = true;
