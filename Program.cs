@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 using studentGrades.entities;
+using studentGrades;
 
 
 internal class Program
@@ -13,73 +14,32 @@ internal class Program
     private static void Main(string[] args){
 
         bool contWhile = true;
-        int respMainMen;
-
-        
-/*         Student newStudent = new Student("12345", "samir", "correo@correo", 20, "cra12 #2-19");
-        Student newStudent2 = new Student("123456789123456", "samir stiven villamizar garcés", "samir@correo.com", 25, "cra12 #2-19 mirador");
-        studentList.Add(newStudent);
-        studentList.Add(newStudent2);
-        studentList[0].UpdGrades(0,3.7f,"quiz");
-        studentList[0].UpdGrades(3,4.5f,"quiz"); */
-
-        /*  Console.WriteLine(newStudent.Code); */
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Magenta;
+        Byte respMainMen;
         List<Student> studentList = new List<Student>();
+        Student newStud = new Student();
+
+        Console.ForegroundColor = ConsoleColor.Magenta;
 
         while (contWhile)
-        {
-            Console.WriteLine();
-            Console.WriteLine("{0,40}", "-------------------------");
-            Console.WriteLine("{0,40}", "----- Student Grades ----");
-            Console.WriteLine("{0,40}", "-------------------------");
-            Console.WriteLine();
-
-            Console.WriteLine("{0,30}", " Main Menú \n");
-            Console.WriteLine("{0,3}", " 1) -> Manage Student");
-            Console.WriteLine("{0,3}", " 2) -> Manage Student Grades");
-            Console.WriteLine("{0,3}", " 3) -> Generate Grade Report");
-            Console.WriteLine("{0,3}", " 4) -> Exit App \n");
-
-            Console.WriteLine(CheckValue("holasss1", "^[a-zA-Z](5)$"));
-            Console.WriteLine(CheckValue("hol", "^[a-zA-Z](5)$"));
-            Console.WriteLine(CheckValue("hol1", "^[a-zA-Z](5)$"));
-            Console.WriteLine(CheckValue("hola", "^[a-zA-Z](5)$"));
-            
-
-            Console.WriteLine("Enter the number of the option you want: ");
-            respMainMen = Convert.ToInt16(Console.ReadLine());
-
+        {  
+            respMainMen = Functions.MainMenu();
             switch (respMainMen)
             {
                 case 1: 
                     bool contStud = true;
                     while (contStud)
                     {
-                        Console.Clear();
                         Int16 resStud; 
-                        Console.WriteLine("{0,30}", " Manage Student \n");
-                        Console.WriteLine("{0,3}", " 1) -> Add Student");
-                        Console.WriteLine("{0,3}", " 2) -> View Student List");
-                        Console.WriteLine("{0,3}", " 3) -> Back to Main Menu");
-                        Console.WriteLine("Enter the number of the option you want: ");
-                        resStud = Convert.ToInt16(Console.ReadLine());    
+                        resStud = Functions.StudentMenu();
                         switch (resStud)
                         {
                             case 1:
                                 Console.Clear();
-                                Student newStud = new Student();
-                                newStud.Code = GetExactVal("Code", 15, "");
-                                newStud.Name = GetExactVal("Name", 40, "");    
-                                newStud.Age = Convert.ToInt16(GetExactVal("Age", 3, ""));
-                                newStud.Email = GetExactVal("Email", 40, "");
-                                newStud.Address = GetExactVal("Address", 35, "");
-                                studentList.Add(newStud);
+                                newStud.AddStudent(studentList);
                                 break;
                             case 2:
                                 Console.Clear();
-                                ListData(studentList, "stud", "", "", "");
+                                /* ListData(studentList, "stud", "", "", ""); */
                                 break;
                             case 3:
                                 contStud = false;
@@ -106,17 +66,17 @@ internal class Program
                         {
                             case 1:
                                 Console.Clear();
-                                AddGrades(studentList,0, "quiz");
+                                /* AddGrades(studentList,0, "quiz"); */
                                 Console.ReadKey();
                                 break;
                             case 2:
                                 Console.Clear();
-                                AddGrades(studentList,0, "task");
+                                /* AddGrades(studentList,0, "task"); */
                                 Console.ReadKey();
                                 break;
                             case 3:
                                 Console.Clear();
-                                AddGrades(studentList,0, "exam");
+                                /* AddGrades(studentList,0, "exam"); */
                                 Console.ReadKey();
                                 break;
                             case 4:
@@ -145,13 +105,13 @@ internal class Program
                         switch (resRep)
                         {
                             case 1:
-                                ListData(studentList,"stud", "", "", "");
+                                /* ListData(studentList,"stud", "", "", ""); */
                                 break;
                             case 2:
-                                ListData(studentList,"allGra", "", "", "");
+                                /* ListData(studentList,"allGra", "", "", ""); */
                                 break;
                             case 3:
-                                EndList(studentList,0, 0, 0, 0);
+                                /* EndList(studentList,0, 0, 0, 0); */
                                 break;
                             case 4:
                                 contGradRep = false;
@@ -175,22 +135,23 @@ internal class Program
         }
     }
 
-    public static string CheckValue(string valType, string msg, string regExp, string dataStu){
+    public static string CheckValue(string valType, string msg, string dataLen, string dataStu){
         /* return Regex.IsMatch(data, @"^[a-zA-Z](5)$"); */
 
         /* return Regex.IsMatch(dataStu, @regExp); */
+        string regExp = valType == "string" ? $"^[a-zA-Z]({dataLen})$" : $"^[0-9]({dataLen})$";
 
         bool contGetExa = true;
         while (contGetExa)
         {
             if (valType == "string"){
-                Console.WriteLine($"Enter the Student {msg}");
+                Console.WriteLine($"Enter the {msg}");
                 dataStu = Console.ReadLine();
                 if (Regex.IsMatch(dataStu, @regExp))
                 {
                     contGetExa = false;
                 } else {
-                    Console.WriteLine($"The Student {msg} must be at least {dataLen} characters");   
+                    Console.WriteLine($"The {msg} must be at least {dataLen} characters");   
                 }
             }
         }
@@ -214,7 +175,7 @@ internal class Program
         return dataStu;
     }
 
-    public static void AddGrades(List<Student> lista, int conStu, string gradeType){
+    /* public static void AddGrades(List<Student> lista, int conStu, string gradeType){
         string stuCode;
         Console.WriteLine($"Enter the Student code: ");
         stuCode = Console.ReadLine();
@@ -262,9 +223,9 @@ internal class Program
         {
             Console.WriteLine("There is no student with that code !!!");
         }
-    }
+    } */
 
-    public static void ListData(List<Student> lista, string opcion, string quizzNots, string tasksNots, string examsNots){
+    /* public static void ListData(List<Student> lista, string opcion, string quizzNots, string tasksNots, string examsNots){
         Console.Clear();
         if (lista.Count() < 1) {
             Console.WriteLine("There are no students in the database");
@@ -296,9 +257,9 @@ internal class Program
             }       
         }
         Console.ReadKey();
-    }
+    } */
 
-    public static void EndList(List<Student> lista, float quizGra, float tasksGra, float examsGra, float finalNot){
+    /* public static void EndList(List<Student> lista, float quizGra, float tasksGra, float examsGra, float finalNot){
         Console.Clear();
         if (lista.Count() < 1) {
             Console.WriteLine("There are no students in the database");
@@ -327,11 +288,23 @@ internal class Program
         }
         Console.ReadKey();
     }
-
+ */
 }
 
 
+/*Student newStudent = new Student("12345", "samir", "correo@correo", 20, "cra12 #2-19");
+        Student newStudent2 = new Student("123456789123456", "samir stiven villamizar garcés", "samir@correo.com", 25, "cra12 #2-19 mirador");
+        studentList.Add(newStudent);
+        studentList.Add(newStudent2);
+        studentList[0].UpdGrades(0,3.7f,"quiz");
+        studentList[0].UpdGrades(3,4.5f,"quiz"); */
 
+        /*  Console.WriteLine(newStudent.Code); */
+
+/*          Console.WriteLine(CheckValue("holasss1", "^[a-zA-Z](5)$"));
+            Console.WriteLine(CheckValue("hol", "^[a-zA-Z](5)$"));
+            Console.WriteLine(CheckValue("hol1", "^[a-zA-Z](5)$"));
+            Console.WriteLine(CheckValue("hola", "^[a-zA-Z](5)$")); */
 
 
 

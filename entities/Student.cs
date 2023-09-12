@@ -1,22 +1,28 @@
-
 using System.Collections;
+using studentGrades;
 
 namespace studentGrades.entities;
 
-public class Student
+public class Student:ReportCard
 {
     private string code;
     private string name;
     private string email;
-    private int age;
+    private byte age;
     private string address;
-/*  private ArrayList quizzes = new ArrayList(){3.2f,4.5f,4.9f,3.9f};
-    private ArrayList tasks = new ArrayList(){4.5f,4.9f};
-    private ArrayList exams = new ArrayList(){4.5f,3.2f,4.5f}; */
-    private ArrayList quizzes = new ArrayList(){0,0,0,0};
-    private ArrayList tasks = new ArrayList(){0,0};
-    private ArrayList exams = new ArrayList(){0,0,0};
+    
+    public Student():base(){}
 
+    public Student(string nId, string nName, string nEmail, byte nAge, string nAddress, List<float> quizzes, List<float> tasks, List<float> exams ):base(quizzes, tasks, exams) {
+        this.code = nId;
+        this.name = nName;
+        this.age = nAge;
+        this.email = nEmail;
+        this.address = nAddress;
+        this.Quizzes = quizzes;
+        this.Tasks = tasks;
+        this.Exams = exams;
+    }
 
     public string Code {
         get {return code;}
@@ -33,7 +39,7 @@ public class Student
         set {email = value;}
     }
 
-    public int Age {
+    public byte Age {
         get {return age;}
         set {age = value;}
     }
@@ -43,7 +49,29 @@ public class Student
         set {address = value;}
     }
 
-    public void UpdGrades(int ranGra, float grade, string gradeNa) {
+    public void AddStudent(List<Student> students){
+
+        Student newStudent = new Student();
+        newStudent.Code = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
+        newStudent.Name = Functions.GetExactVal("str", "3,40", "only letters", "student Name");
+        newStudent.Age = byte.Parse(Functions.GetExactVal("int", "1,2", "only numbers", "student Age"));
+        newStudent.Email = Functions.GetExactVal("str", "3,40", "only letters", "student Email");
+        newStudent.Address = Functions.GetExactVal("str", "3,40", "only letters", "student Address");
+        Console.WriteLine(newStudent.Code);
+        Console.WriteLine(newStudent.Name);
+        Console.WriteLine(newStudent.Age);
+        Console.WriteLine(newStudent.Email);
+        Console.WriteLine(newStudent.Address);
+        Console.ReadKey();
+    }   
+
+
+}
+
+
+
+
+    /* public void UpdGrades(int ranGra, float grade, string gradeNa) {
         switch (gradeNa)
         {
             case "quiz":
@@ -75,41 +103,4 @@ public class Student
             default:
                 return quizzes;
         }
-    }
-
-/*     public void UpdQuizzes(int ranQuiz, float quiz) {
-        quizzes.RemoveAt(ranQuiz);
-        quizzes.Insert(ranQuiz,quiz);
-    }
-
-    public ArrayList GetQuizzes() {
-        return quizzes;
-    }
-
-    public void UpdTasks(int ranTask, float task) {
-        tasks.Insert(ranTask,task);
-    }
-
-    public ArrayList GetTasks() {
-        return tasks;
-    }
-
-    public void UpdExams(int ranExam ,float exam) {
-        exams.Insert(ranExam,exam);
-    }
-
-    public ArrayList GetExams() {
-        return exams;
     } */
-
-    public Student(){}
-
-    public Student(string nId, string nName, string nEmail, int nAge, string nAddress) {
-        this.code = nId;
-        this.name = nName;
-        this.email = nEmail;
-        this.age = nAge;
-        this.address = nAddress;
-    }
-
-}
