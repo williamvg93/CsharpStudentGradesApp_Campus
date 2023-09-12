@@ -35,7 +35,7 @@ internal class Program
                         {
                             case 1:
                                 Console.Clear();
-                                newStud.AddStudent(studentList);
+                                studentList = newStud.AddStudent(studentList);
                                 break;
                             case 2:
                                 Console.Clear();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "puRDX/x8SRumr3OKQ2D6n20SgIS9SJMH9R4dVmH6bIO53321CieKUcLdAa2sRErzC9M0stibS8Q92myv0wPO2Q==",
+  "dgSpecHash": "UGPgllk5gwk9gFyLw+oD72zfm7fY5y3GgrqE+Oovfjzib2iQP5V3qrbiXYxpKyDa3WBeEsbJEOH5Wkc8xi1N9Q==",
   "success": true,
-  "projectFilePath": "D:\\Programacion\\Campus2023\\C#\\Class\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
+  "projectFilePath": "/workspaces/CsharpStudentGradesApp_Campus/studentGrades.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

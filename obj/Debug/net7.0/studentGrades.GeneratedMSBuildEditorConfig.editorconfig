@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = studentGrades
-build_property.ProjectDir = d:\Programacion\Campus2023\C#\Class\CsharpStudentGradesApp_Campus\
+build_property.ProjectDir = /workspaces/CsharpStudentGradesApp_Campus/

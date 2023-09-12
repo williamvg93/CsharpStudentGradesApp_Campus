@@ -49,20 +49,20 @@ public class Student:ReportCard
         set {address = value;}
     }
 
-    public void AddStudent(List<Student> students){
-
+    public List<Student> AddStudent(List<Student> students){
         Student newStudent = new Student();
         newStudent.Code = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
-        newStudent.Name = Functions.GetExactVal("str", "3,40", "only letters", "student Name");
+        newStudent.Name = Functions.GetExactVal("strSpace", "3,40", "only letters", "student Name");
         newStudent.Age = byte.Parse(Functions.GetExactVal("int", "1,2", "only numbers", "student Age"));
-        newStudent.Email = Functions.GetExactVal("str", "3,40", "only letters", "student Email");
-        newStudent.Address = Functions.GetExactVal("str", "3,40", "only letters", "student Address");
+        newStudent.Email = Functions.GetExactVal("opt", "3,40", "only letters", "student Email");
+        newStudent.Address = Functions.GetExactVal("opt", "3,40", "only letters", "student Address");
         Console.WriteLine(newStudent.Code);
         Console.WriteLine(newStudent.Name);
         Console.WriteLine(newStudent.Age);
         Console.WriteLine(newStudent.Email);
         Console.WriteLine(newStudent.Address);
-        Console.ReadKey();
+        students.Add(newStudent);
+        return students;
     }   
 
 

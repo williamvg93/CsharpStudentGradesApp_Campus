@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using studentGrades.entities;
 
@@ -9,7 +10,7 @@ namespace studentGrades
     {
         
         public static byte MainMenu(){
-            Console.Clear();
+            // Console.Clear();
             Console.WriteLine();
             Console.WriteLine("{0,40}", "-------------------------");
             Console.WriteLine("{0,40}", "----- Student Grades ----");
@@ -24,7 +25,7 @@ namespace studentGrades
         }
 
         public static byte StudentMenu(){
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("{0,30}", " Manage Student \n");
             Console.WriteLine("{0,3}", " 1) -> Add Student");
             Console.WriteLine("{0,3}", " 2) -> View Student List");
@@ -32,9 +33,26 @@ namespace studentGrades
             Console.WriteLine("Enter the number of the option you want: ");
             return Byte.Parse(Console.ReadLine());
         }
+        
         public static string GetExactVal(string valType, string dataLen, string msgRestric, string msg){
             string newData = null;
-            string regExp = valType == "str" ? "^[a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$" : "^[0-9]{"+dataLen+"}$";
+            string regExp;
+            switch (valType)
+            {
+                case "strSpace":
+                    regExp = "^([a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$";
+                    break;
+                case "str":
+                    regExp = "^[a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$";
+                    break;
+                case "int":
+                    regExp = "^[0-9]{"+dataLen+"}$";
+                    break;
+                default:
+                    regExp = "^[a-zA-ZÀ-ÿ_-@.\u00f1\u00d1]{"+dataLen+"}$";
+                    break;
+            }
+            //string regExp = valType == "str" ? "^[a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$" : "^[0-9]{"+dataLen+"}$";
             Console.WriteLine(regExp);
 
             bool contGetExa = true;
