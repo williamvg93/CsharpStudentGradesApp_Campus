@@ -59,15 +59,7 @@ internal class Program
                 case 2:
                     bool contGrad = true;
                     while (contGrad) {
-                        Console.Clear();
-                        Int16 resGra; 
-                        Console.WriteLine("{0,30}", " Manage Student Grades \n");
-                        Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
-                        Console.WriteLine("{0,3}", " 2) -> Add Tasks Grade");
-                        Console.WriteLine("{0,3}", " 3) -> Add Exam Garde");
-                        Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
-                        Console.WriteLine("Enter the number of the option you want: ");
-                        resGra = Convert.ToInt16(Console.ReadLine());
+                        byte resGra = Functions.StudentMenu();
                         switch (resGra)
                         {
                             case 1:

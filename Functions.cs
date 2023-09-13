@@ -33,6 +33,16 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
         }
+        public static byte GradetMenu(){
+            Console.Clear();
+            Console.WriteLine("{0,30}", " Manage Student Grades \n");
+            Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
+            Console.WriteLine("{0,3}", " 2) -> Add Tasks Grade");
+            Console.WriteLine("{0,3}", " 3) -> Add Exam Garde");
+            Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
+            Console.WriteLine("Enter the number of the option you want: ");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Menu Option: "));
+        }
         
         public static string GetExactVal(string valType, string dataLen, string msgRestric, string msg){
             string newData = null;
@@ -81,10 +91,25 @@ namespace studentGrades
         }
 
         public static List<Student> LoadData(List<Student> studList){
-
+            //bool dirExists = Directory.Exists("./ReportCard.json");
+            //string ruta = Path.Combine(Environment.CurrentDirectory,"reportCard.json");
+            //Console.WriteLine(ruta);
+            //bool dirExists = File.Exists("reportCard.json");
+            if (!File.Exists("reportCard.json"))
+            {
+                SaveData(studList);
+            }
             using (StreamReader reader = new StreamReader("reportCard.json")){
                 string json = reader.ReadToEnd();
-                return studList = System.Text.Json.JsonSerializer.Deserialize<List<Student>>(json, new System.Text.Json.JsonSerializerOptions(){PropertyNameCaseInsensitive = true}) ?? new List<Student>();
+                Console.WriteLine(json); 
+                Console.WriteLine(json.Length);
+                if (json.Length >= 4)
+                {
+                    studList = System.Text.Json.JsonSerializer.Deserialize<List<Student>>(json, new System.Text.Json.JsonSerializerOptions(){PropertyNameCaseInsensitive = true}) ?? new List<Student>();
+                    Console.WriteLine(studList);
+                    return studList;
+                }
+                return studList;
             }
             /* 
             PropertyNameCaseInsensitive
