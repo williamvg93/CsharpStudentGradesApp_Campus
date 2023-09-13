@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UGPgllk5gwk9gFyLw+oD72zfm7fY5y3GgrqE+Oovfjzib2iQP5V3qrbiXYxpKyDa3WBeEsbJEOH5Wkc8xi1N9Q==",
+  "dgSpecHash": "Mjicr1/YD4U1iNv3FrxFP3p5f01cA8Xj0EkRQsxJt9gNJq6kiGo93D2v6+/Beq4pdobjQB2dVfPXcc6UYU30Kw==",
   "success": true,
-  "projectFilePath": "/workspaces/CsharpStudentGradesApp_Campus/studentGrades.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Programacion\\Campus2023\\C#\\Class\\CsharpStudentGradesApp_Campus\\CsharpStudentGradesApp_Campus\\studentGrades.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Home\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

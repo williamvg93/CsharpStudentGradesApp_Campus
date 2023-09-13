@@ -1,0 +1,22 @@
+[
+  {
+    "Code": "1098739317",
+    "Name": "William Villamizar Garces",
+    "Email": "prueba@gmail.com",
+    "Age": 30,
+    "Address": "cra 3 #46-12 Campohermoso",
+    "Quizzes": [],
+    "Tasks": [],
+    "Exams": []
+  },
+  {
+    "Code": "1098728394",
+    "Name": "carlos pereira",
+    "Email": "correo@correo.com",
+    "Age": 19,
+    "Address": "cra 15# 20-58 apartamento 202",
+    "Quizzes": [],
+    "Tasks": [],
+    "Exams": []
+  }
+]

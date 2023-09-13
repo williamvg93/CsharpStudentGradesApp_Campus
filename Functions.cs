@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 using studentGrades.entities;
 
 
@@ -8,7 +9,6 @@ namespace studentGrades
 {
     public class Functions
     {
-        
         public static byte MainMenu(){
             // Console.Clear();
             Console.WriteLine();
@@ -25,13 +25,13 @@ namespace studentGrades
         }
 
         public static byte StudentMenu(){
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("{0,30}", " Manage Student \n");
             Console.WriteLine("{0,3}", " 1) -> Add Student");
-            Console.WriteLine("{0,3}", " 2) -> View Student List");
-            Console.WriteLine("{0,3}", " 3) -> Back to Main Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
-            return Byte.Parse(Console.ReadLine());
+            Console.WriteLine("{0,3}", " 2) -> Delete Student");
+            Console.WriteLine("{0,3}", " 3) -> View Student List");
+            Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
         }
         
         public static string GetExactVal(string valType, string dataLen, string msgRestric, string msg){
@@ -40,29 +40,32 @@ namespace studentGrades
             switch (valType)
             {
                 case "strSpace":
-                    regExp = "^([a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$";
+                    regExp = @"^[a-zA-ZÀ-ÿ\u00f1\u00d1\x20]{"+dataLen+"}$";
                     break;
-                case "str":
-                    regExp = "^[a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$";
+                case "strDir":
+                    regExp = @"^[a-zA-Z0-9À-ÿ_\u00f1\u00d1\-\#\.\x20]{"+dataLen+"}$";
+                    break;
+                case "strEmail":
+                    regExp = @"^([\w\.\-_]+)@([\w\-]+)((\.(\w){2,4})+)$";
                     break;
                 case "int":
-                    regExp = "^[0-9]{"+dataLen+"}$";
+                    regExp = @"^[0-9]{"+dataLen+"}$";
                     break;
                 default:
-                    regExp = "^[a-zA-ZÀ-ÿ_-@.\u00f1\u00d1]{"+dataLen+"}$";
+                    regExp = @"^[\s\S]{"+dataLen+"}$";
                     break;
             }
-            //string regExp = valType == "str" ? "^[a-zA-ZÀ-ÿ\u00f1\u00d1]{"+dataLen+"}$" : "^[0-9]{"+dataLen+"}$";
             Console.WriteLine(regExp);
-
             bool contGetExa = true;
+
             while (contGetExa)
             {
                 Console.WriteLine($"Enter the {msg}");
                 newData = Console.ReadLine();
-                Console.WriteLine(newData);
-                if (Regex.IsMatch(newData, @regExp))
+                if (Regex.IsMatch(newData, regExp))
                 {
+                    newData = Regex.Replace(newData, @"\s+", " ").Trim();
+                    Console.WriteLine(newData);
                     contGetExa = false;
                 } else {
                         Console.WriteLine($"{msgRestric} are allowed, The {msg} must be at least {dataLen} characters");   
@@ -70,6 +73,26 @@ namespace studentGrades
             }
             return newData;
         }
+
+        public static void SaveData(List<Student> studList){
+            /* deserializacion/serializacion Json - Lista */
+            string json = JsonConvert.SerializeObject(studList, Formatting.Indented);
+            File.WriteAllText("reportCard.json", json);
+        }
+
+        public static List<Student> LoadData(List<Student> studList){
+
+            using (StreamReader reader = new StreamReader("reportCard.json")){
+                string json = reader.ReadToEnd();
+                return studList = System.Text.Json.JsonSerializer.Deserialize<List<Student>>(json, new System.Text.Json.JsonSerializerOptions(){PropertyNameCaseInsensitive = true}) ?? new List<Student>();
+            }
+            /* 
+            PropertyNameCaseInsensitive
+            Mantener carecteres como estan en el archivo JSON  
+            */
+
+        }
+
 
     }
 }

@@ -54,22 +54,34 @@ public class Student:ReportCard
         newStudent.Code = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
         newStudent.Name = Functions.GetExactVal("strSpace", "3,40", "only letters", "student Name");
         newStudent.Age = byte.Parse(Functions.GetExactVal("int", "1,2", "only numbers", "student Age"));
-        newStudent.Email = Functions.GetExactVal("opt", "3,40", "only letters", "student Email");
-        newStudent.Address = Functions.GetExactVal("opt", "3,40", "only letters", "student Address");
-        Console.WriteLine(newStudent.Code);
-        Console.WriteLine(newStudent.Name);
-        Console.WriteLine(newStudent.Age);
-        Console.WriteLine(newStudent.Email);
-        Console.WriteLine(newStudent.Address);
+        newStudent.Email = Functions.GetExactVal("strEmail", "3,40", "only letters, numbers and(@,-,_,.)", "student Email");
+        newStudent.Address = Functions.GetExactVal("strDir", "3,40", "only letters, numbers and(#,-,_,.)", "student Address");
         students.Add(newStudent);
+        Functions.SaveData(students);
+        Functions.LoadData(students);
         return students;
-    }   
+    }  
+
+    public void DeleteStud(List<Student> students){
+        string StuId = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
+
+        Student studRemo = students.FirstOrDefault(stud => (stud.Code ?? string.Empty).Equals(StuId)) ?? new Student();
+
+/*         Console.WriteLine((studRemo.Name).GetType()); */
+        if (studRemo.Code == null)
+        {
+            Console.WriteLine("There is no student with that code !!!");
+        } else {
+            Console.WriteLine($"Student Name: ${studRemo.Name}");
+            students.Remove(studRemo);
+            Functions.SaveData(students);
+        }
+        Console.ReadKey();
+
+    } 
 
 
 }
-
-
-
 
     /* public void UpdGrades(int ranGra, float grade, string gradeNa) {
         switch (gradeNa)

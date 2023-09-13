@@ -8,6 +8,7 @@ using Microsoft.VisualBasic;
 using studentGrades.entities;
 using studentGrades;
 
+/* Nuget Gallery estension */
 
 internal class Program
 {
@@ -21,7 +22,8 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.Magenta;
 
         while (contWhile)
-        {  
+        {   
+            studentList = Functions.LoadData(studentList);
             respMainMen = Functions.MainMenu();
             switch (respMainMen)
             {
@@ -38,14 +40,18 @@ internal class Program
                                 studentList = newStud.AddStudent(studentList);
                                 break;
                             case 2:
+                                newStud.DeleteStud(studentList);
+                                break;
+                            case 3:
                                 Console.Clear();
                                 /* ListData(studentList, "stud", "", "", ""); */
                                 break;
-                            case 3:
+                            case 4:
                                 contStud = false;
                                 break;
                             default:
                                 Console.WriteLine("Enter a Valid Option !!!!");
+                                Console.ReadKey();
                                 break;
                         }
                     }
