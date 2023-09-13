@@ -57,25 +57,24 @@ internal class Program
                     }
                     break; 
                 case 2:
+                    
                     bool contGrad = true;
                     while (contGrad) {
-                        byte resGra = Functions.StudentMenu();
+                        byte resGra = Functions.GradetMenu();
                         switch (resGra)
                         {
                             case 1:
                                 Console.Clear();
-                                /* AddGrades(studentList,0, "quiz"); */
-                                Console.ReadKey();
+                                studentList = newStud.AddGrade(studentList,"quiz", "Quiz Grade #");
                                 break;
                             case 2:
                                 Console.Clear();
-                                /* AddGrades(studentList,0, "task"); */
-                                Console.ReadKey();
+                                studentList = newStud.AddGrade(studentList,"task", "Task Grade #");
                                 break;
                             case 3:
                                 Console.Clear();
-                                /* AddGrades(studentList,0, "exam"); */
-                                Console.ReadKey();
+                                Console.Clear();
+                                studentList = newStud.AddGrade(studentList,"exam", "Exam Grade #");
                                 break;
                             case 4:
                                 contGrad = false;

@@ -61,6 +61,10 @@ namespace studentGrades
                 case "int":
                     regExp = @"^[0-9]{"+dataLen+"}$";
                     break;
+                case "float":
+/*                     regExp = @"^[0-9\.]{"+dataLen+"}$"; */
+                    regExp = @"^[0-9]([\.\,][0-9]{"+dataLen+"})?$";
+                    break;
                 default:
                     regExp = @"^[\s\S]{"+dataLen+"}$";
                     break;

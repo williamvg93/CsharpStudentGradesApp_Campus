@@ -62,16 +62,34 @@ public class Student:ReportCard
         return students;
     }  
 
-    public List<Student> AddGrade(List<Student> students){
-        Student newStudent = new Student();
-        newStudent.Code = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
-        newStudent.Name = Functions.GetExactVal("strSpace", "3,40", "only letters", "student Name");
-        newStudent.Age = byte.Parse(Functions.GetExactVal("int", "1,2", "only numbers", "student Age"));
-        newStudent.Email = Functions.GetExactVal("strEmail", "3,40", "only letters, numbers and(@,-,_,.)", "student Email");
-        newStudent.Address = Functions.GetExactVal("strDir", "3,40", "only letters, numbers and(#,-,_,.)", "student Address");
-        students.Add(newStudent);
-        Functions.SaveData(students);
-        Functions.LoadData(students);
+    public List<Student> AddGrade(List<Student> students, string option, string msg){
+        string studCod = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
+
+        Student stud = students.FirstOrDefault(s => s.Code.Equals(studCod));
+        Console.WriteLine(stud);
+        if (stud == null){
+            Console.WriteLine("There are no students in the database");
+        } else {
+            switch (option)
+            {
+                case "quiz":
+                    stud.Quizzes.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", msg+$"{stud.Quizzes.Count + 1}")));
+                    break;
+                case "task":
+                    stud.Tasks.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", msg+$"{stud.Tasks.Count + 1}")));
+                    break;
+                case "exam":
+                    stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-3", "only numbers", msg+$"{stud.Exams.Count + 1}")));
+                    break;
+                default:
+                    Console.WriteLine("Invalid Opcion !!!");
+                    break;
+            }
+            int studPosi = students.FindIndex(s => s.Code.Equals(studCod));
+            students[studPosi] = stud;
+            Functions.SaveData(students);
+            Functions.LoadData(students);
+        }
         return students;
     }  
 
