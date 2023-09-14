@@ -62,8 +62,7 @@ public class Student:ReportCard
         return students;
     }  
 
-    public List<Student> AddGrade(List<Student> students, string option, string msg){
-        byte resGra = Functions.GradetMenu();
+    public List<Student> AddGrade(List<Student> students, byte option, string msg){
         string studCod = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
 
         Student stud = students.FirstOrDefault(s => s.Code.Equals(studCod));
@@ -75,13 +74,13 @@ public class Student:ReportCard
             while (contGrad) {
                 switch (option)
                 {
-                    case "quiz":
+                    case 1:
                         stud.Quizzes.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", "Quiz Grade #"+$"{stud.Quizzes.Count + 1}")));
                         break;
-                    case "task":
+                    case 2:
                         stud.Tasks.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", "Task Grade #"+$"{stud.Tasks.Count + 1}")));
                         break;
-                    case "exam":
+                    case 3:
                         stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-3", "only numbers", "Exam Grade #"+$"{stud.Exams.Count + 1}")));
                         break;
                     default:

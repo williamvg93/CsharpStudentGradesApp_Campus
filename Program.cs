@@ -73,8 +73,7 @@ internal class Program
                                     {
                                         case 1:
                                             Console.Clear();
-                                            Functions.QuizGradMen();
-                                            studentList = newStud.AddGrade(studentList,"quiz", "Quiz Grade #");
+                                            studentList = newStud.AddGrade(studentList, resQuizMen , "Quiz Grade #");
                                             break;
                                         case 2:
                                             Console.Clear();
@@ -93,12 +92,10 @@ internal class Program
                                 }
                                 break;
                             case 2:
-                                Console.Clear();
-                                studentList = newStud.AddGrade(studentList,"task", "Task Grade #");
+                                Console.Clear();                      
                                 break;
                             case 3:
                                 Console.Clear();
-                                studentList = newStud.AddGrade(studentList,"exam", "Exam Grade #");
                                 break;
                             case 4:
                                 contGrad = false;
