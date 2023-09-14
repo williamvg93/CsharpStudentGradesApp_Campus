@@ -36,13 +36,26 @@ namespace studentGrades
         public static byte GradetMenu(){
             Console.Clear();
             Console.WriteLine("{0,30}", " Manage Student Grades \n");
-            Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
-            Console.WriteLine("{0,3}", " 2) -> Add Tasks Grade");
-            Console.WriteLine("{0,3}", " 3) -> Add Exam Garde");
+            Console.WriteLine("{0,3}", " 1) -> Manage Quiz Grade");
+            Console.WriteLine("{0,3}", " 2) -> Manage Tasks Grade");
+            Console.WriteLine("{0,3}", " 3) -> Manage Exam Garde");
             Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
             Console.WriteLine("Enter the number of the option you want: ");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Menu Option: "));
         }
+
+        public static byte QuizGradMen(){
+            Console.Clear();
+            Console.WriteLine("{0,30}", " Manage Quiz Grades \n");
+            Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
+            Console.WriteLine("{0,3}", " 2) -> Edit Quiz Grade");
+            Console.WriteLine("{0,3}", " 3) -> Delete Quiz Garde");
+            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu");
+            Console.WriteLine("Enter the number of the option you want: ");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Quiz Option: "));
+        }
+
+
         
         public static string GetExactVal(string valType, string dataLen, string msgRestric, string msg){
             string newData = null;

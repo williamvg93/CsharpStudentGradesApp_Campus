@@ -23,6 +23,7 @@ internal class Program
 
         while (contWhile)
         {   
+            Console.Clear();
             studentList = Functions.LoadData(studentList);
             respMainMen = Functions.MainMenu();
             switch (respMainMen)
@@ -31,7 +32,8 @@ internal class Program
                     bool contStud = true;
                     while (contStud)
                     {
-                        Int16 resStud; 
+                        Console.Clear();
+                        byte resStud; 
                         resStud = Functions.StudentMenu();
                         switch (resStud)
                         {
@@ -56,23 +58,45 @@ internal class Program
                         }
                     }
                     break; 
-                case 2:
-                    
+                case 2:                
                     bool contGrad = true;
                     while (contGrad) {
-                        byte resGra = Functions.GradetMenu();
+                    byte resGra = Functions.GradetMenu();
                         switch (resGra)
                         {
                             case 1:
-                                Console.Clear();
-                                studentList = newStud.AddGrade(studentList,"quiz", "Quiz Grade #");
+                                bool contQuizGrad = true;
+                                while (contQuizGrad) {
+                                    Console.Clear();
+                                    byte resQuizMen = Functions.QuizGradMen();
+                                    switch (resQuizMen)
+                                    {
+                                        case 1:
+                                            Console.Clear();
+                                            Functions.QuizGradMen();
+                                            studentList = newStud.AddGrade(studentList,"quiz", "Quiz Grade #");
+                                            break;
+                                        case 2:
+                                            Console.Clear();
+                                            break;
+                                        case 3:
+                                            Console.Clear();
+                                            break;
+                                        case 4:
+                                            contQuizGrad = false;
+                                            break;
+                                        default:
+                                            Console.WriteLine("Enter a Valid Option !!!!");
+                                            Console.ReadKey();
+                                            break;
+                                    }
+                                }
                                 break;
                             case 2:
                                 Console.Clear();
                                 studentList = newStud.AddGrade(studentList,"task", "Task Grade #");
                                 break;
                             case 3:
-                                Console.Clear();
                                 Console.Clear();
                                 studentList = newStud.AddGrade(studentList,"exam", "Exam Grade #");
                                 break;

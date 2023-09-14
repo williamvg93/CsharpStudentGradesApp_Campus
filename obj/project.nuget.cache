@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dFphBuH6LRpiW2d7fVa9Y3bk5dGLtU0+69ukVPQ5ytljLXnb+zct855DXufYQ0PdAjmfgNqdPH1PDPt93+vW1g==",
+  "dgSpecHash": "FAmA38IrmRdBWF89t51Lz8YmrEGTb+WhZVp4FVO1kFPtuJT2Ja13TGZwxh+R3XU6VkzFZG2C0YPuLn+IN8TgYw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\APM02-066\\Documents\\Trowa\\.net_c#\\Ejercicios\\studentGrades\\studentGrades.csproj",
+  "projectFilePath": "/workspaces/CsharpStudentGradesApp_Campus/studentGrades.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\APM02-066\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "/home/codespace/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

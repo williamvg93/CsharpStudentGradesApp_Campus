@@ -63,6 +63,7 @@ public class Student:ReportCard
     }  
 
     public List<Student> AddGrade(List<Student> students, string option, string msg){
+        byte resGra = Functions.GradetMenu();
         string studCod = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
 
         Student stud = students.FirstOrDefault(s => s.Code.Equals(studCod));
@@ -70,20 +71,23 @@ public class Student:ReportCard
         if (stud == null){
             Console.WriteLine("There are no students in the database");
         } else {
-            switch (option)
-            {
-                case "quiz":
-                    stud.Quizzes.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", msg+$"{stud.Quizzes.Count + 1}")));
-                    break;
-                case "task":
-                    stud.Tasks.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", msg+$"{stud.Tasks.Count + 1}")));
-                    break;
-                case "exam":
-                    stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-3", "only numbers", msg+$"{stud.Exams.Count + 1}")));
-                    break;
-                default:
-                    Console.WriteLine("Invalid Opcion !!!");
-                    break;
+            bool contGrad = true;
+            while (contGrad) {
+                switch (option)
+                {
+                    case "quiz":
+                        stud.Quizzes.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", "Quiz Grade #"+$"{stud.Quizzes.Count + 1}")));
+                        break;
+                    case "task":
+                        stud.Tasks.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", "Task Grade #"+$"{stud.Tasks.Count + 1}")));
+                        break;
+                    case "exam":
+                        stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-3", "only numbers", "Exam Grade #"+$"{stud.Exams.Count + 1}")));
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Opcion, plis enter a valid opcion !!!s");
+                        break;
+                }
             }
             int studPosi = students.FindIndex(s => s.Code.Equals(studCod));
             students[studPosi] = stud;
