@@ -61,6 +61,7 @@ internal class Program
                 case 2:                
                     bool contGrad = true;
                     while (contGrad) {
+                    Console.Clear();
                     byte resGra = Functions.GradetMenu();
                         switch (resGra)
                         {
@@ -73,12 +74,13 @@ internal class Program
                                     {
                                         case 1:
                                             Console.Clear();
-                                            studentList = newStud.AddGrade(studentList, resQuizMen , "Quiz Grade #");
+                                            studentList = newStud.AddGrade(studentList, "quiz" , "Quiz Grade #");
                                             break;
                                         case 2:
                                             Console.Clear();
                                             break;
                                         case 3:
+                                            studentList = newStud.DeleteTask(studentList, "quiz" , "Quiz Grade #");
                                             Console.Clear();
                                             break;
                                         case 4:
@@ -92,10 +94,60 @@ internal class Program
                                 }
                                 break;
                             case 2:
-                                Console.Clear();                      
+                                bool contTaskGrad = true;
+                                while (contTaskGrad) {
+                                    Console.Clear();
+                                    byte resTaskMen = Functions.TaskGradMen();
+                                    switch (resTaskMen)
+                                    {
+                                        case 1:
+                                            Console.Clear();
+                                            studentList = newStud.AddGrade(studentList, "task" , "task Grade #");
+                                            break;
+                                        case 2:
+                                            Console.Clear();
+                                            break;
+                                        case 3:
+                                            studentList = newStud.DeleteTask(studentList, "task" , "task Grade #");
+                                            Console.Clear();
+                                            break;
+                                        case 4:
+                                            contTaskGrad = false;
+                                            break;
+                                        default:
+                                            Console.WriteLine("Enter a Valid Option !!!!");
+                                            Console.ReadKey();
+                                            break;
+                                    }
+                                }                      
                                 break;
                             case 3:
-                                Console.Clear();
+                                bool contExamGrad = true;
+                                while (contExamGrad) {
+                                    Console.Clear();
+                                    byte resTaskMen = Functions.ExamGradMen();
+                                    switch (resTaskMen)
+                                    {
+                                        case 1:
+                                            Console.Clear();
+                                            studentList = newStud.AddGrade(studentList, "exam" , "exam Grade #");
+                                            break;
+                                        case 2:
+                                            Console.Clear();
+                                            break;
+                                        case 3:
+                                            studentList = newStud.DeleteTask(studentList, "exam" , "exam Grade #");
+                                            Console.Clear();
+                                            break;
+                                        case 4:
+                                            contExamGrad = false;
+                                            break;
+                                        default:
+                                            Console.WriteLine("Enter a Valid Option !!!!");
+                                            Console.ReadKey();
+                                            break;
+                                    }
+                                }                      
                                 break;
                             case 4:
                                 contGrad = false;

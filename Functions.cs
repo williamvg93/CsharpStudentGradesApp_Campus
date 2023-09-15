@@ -31,6 +31,7 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 2) -> Delete Student");
             Console.WriteLine("{0,3}", " 3) -> View Student List");
             Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
+            Console.WriteLine("Enter the number of the option you want: ");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
         }
         public static byte GradetMenu(){
@@ -54,6 +55,26 @@ namespace studentGrades
             Console.WriteLine("Enter the number of the option you want: ");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Quiz Option: "));
         }
+        public static byte TaskGradMen(){
+            Console.Clear();
+            Console.WriteLine("{0,30}", " Manage Task Grades \n");
+            Console.WriteLine("{0,3}", " 1) -> Add Task Grade");
+            Console.WriteLine("{0,3}", " 2) -> Edit Task Grade");
+            Console.WriteLine("{0,3}", " 3) -> Delete Task Garde");
+            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu");
+            Console.WriteLine("Enter the number of the option you want: ");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Task Option: "));
+        }
+        public static byte ExamGradMen(){
+            Console.Clear();
+            Console.WriteLine("{0,30}", " Manage Exam Grades \n");
+            Console.WriteLine("{0,3}", " 1) -> Add Exam Grade");
+            Console.WriteLine("{0,3}", " 2) -> Edit Exam Grade");
+            Console.WriteLine("{0,3}", " 3) -> Delete Exam Garde");
+            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu");
+            Console.WriteLine("Enter the number of the option you want: ");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Exam Option: "));
+        }
 
 
         
@@ -76,7 +97,10 @@ namespace studentGrades
                     break;
                 case "float":
 /*                     regExp = @"^[0-9\.]{"+dataLen+"}$"; */
-                    regExp = @"^[0-9]([\.\,][0-9]{"+dataLen+"})?$";
+                    /* regExp = @"^[0-9]+([\.\,][0-9]{"+dataLen+"})?$"; */
+
+                    /* regExp = @"^[0-9]*(?:\.\,[0-9]*)?$"; */
+                    regExp = @"^[0-9]+\,[0-9]+$";
                     break;
                 default:
                     regExp = @"^[\s\S]{"+dataLen+"}$";
@@ -108,18 +132,12 @@ namespace studentGrades
         }
 
         public static List<Student> LoadData(List<Student> studList){
-            //bool dirExists = Directory.Exists("./ReportCard.json");
-            //string ruta = Path.Combine(Environment.CurrentDirectory,"reportCard.json");
-            //Console.WriteLine(ruta);
-            //bool dirExists = File.Exists("reportCard.json");
             if (!File.Exists("reportCard.json"))
             {
                 SaveData(studList);
             }
             using (StreamReader reader = new StreamReader("reportCard.json")){
                 string json = reader.ReadToEnd();
-                Console.WriteLine(json); 
-                Console.WriteLine(json.Length);
                 if (json.Length >= 4)
                 {
                     studList = System.Text.Json.JsonSerializer.Deserialize<List<Student>>(json, new System.Text.Json.JsonSerializerOptions(){PropertyNameCaseInsensitive = true}) ?? new List<Student>();
@@ -132,7 +150,6 @@ namespace studentGrades
             PropertyNameCaseInsensitive
             Mantener carecteres como estan en el archivo JSON  
             */
-
         }
 
 
