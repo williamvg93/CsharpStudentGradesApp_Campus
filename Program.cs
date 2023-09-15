@@ -42,13 +42,17 @@ internal class Program
                                 studentList = newStud.AddStudent(studentList);
                                 break;
                             case 2:
+                                Console.Clear();
                                 newStud.DeleteStud(studentList);
                                 break;
                             case 3:
                                 Console.Clear();
-                                /* ListData(studentList, "stud", "", "", ""); */
+                                newStud.UpdateStud(studentList);
                                 break;
                             case 4:
+                                Console.Clear();
+                                break;
+                            case 5:
                                 contStud = false;
                                 break;
                             default:

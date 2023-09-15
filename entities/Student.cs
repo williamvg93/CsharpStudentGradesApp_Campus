@@ -72,12 +72,66 @@ public class Student:ReportCard
         {
             Console.WriteLine("There is no student with that code !!!");
         } else {
-            Console.WriteLine($"Student Name: ${studRemo.Name}");
+            Console.WriteLine($"Student Name: {studRemo.Name}");
             students.Remove(studRemo);
             Functions.SaveData(students);
         }
         Console.ReadKey();
+    } 
 
+    public List<Student> UpdateStud(List<Student> students){
+        string StuId = Functions.GetExactVal("int", "2,15", "only numbers", "student Code");
+
+        Student studRemo = students.FirstOrDefault(stud => (stud.Code ?? string.Empty).Equals(StuId)) ?? new Student();
+
+        /* Console.WriteLine((studRemo.Name).GetType()); */
+        if (studRemo.Code == null)
+        {
+            Console.WriteLine("There is no student with that code !!!");
+        } else {
+            bool contEditStu = true;
+            while (contEditStu)
+            {   
+                Console.Clear();
+                Console.WriteLine($"Student Name: {studRemo.Name}\n");
+                int contDataStu = 0;
+                foreach (var studData in studRemo.GetType().GetProperties())
+                {
+                    if (studData.Name != "Code" && studData.Name != "Quizzes" && studData.Name != "Tasks" && studData.Name != "Exams")
+                    {   
+                        contDataStu += 1;
+                        Console.WriteLine("{0,3} {1,3} {2,3}", $"{contDataStu})", $"-> Update Student {studData.Name}:\t", studData.GetValue(studRemo)); 
+                    }
+                }
+                Console.WriteLine("{0,3} {1,3}", $"{contDataStu})", "Back to Student Menu\t"); 
+                Console.WriteLine();
+                byte resEdiStu =  Byte.Parse(Functions.GetExactVal("int", "1", "only numbers", "Data number of the data you want to edit: "));
+                switch (resEdiStu)
+                {
+                    case 1:
+                        studRemo.Name = Functions.GetExactVal("strSpace", "3,40", "only letters", "student Name");
+                        break;
+                    case 2:
+                        studRemo.Email = Functions.GetExactVal("strEmail", "3,40", "only letters, numbers and(@,-,_,.)", "student Email");
+                        break;
+                    case 3:
+                        studRemo.Age = byte.Parse(Functions.GetExactVal("int", "1,2", "only numbers", "student Age"));
+                        break;
+                    case 4:
+                        studRemo.Address = Functions.GetExactVal("strDir", "3,40", "only letters, numbers and(#,-,_,.)", "student Address");
+                        break;
+                    case 5:
+                        contEditStu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Enter a valid Option !!!");
+                        break;
+                }
+            }
+            Functions.SaveData(students);
+            Functions.LoadData(students);
+        }
+        return students;
     } 
 
     public List<Student> AddGrade(List<Student> students, string option, string msg){
@@ -101,7 +155,7 @@ public class Student:ReportCard
                         contGrad = false;
                         break;
                     case "exam":
-                        stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-3", "only numbers", "Exam Grade #"+$"{stud.Exams.Count + 1}")));
+                        stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", "Exam Grade #"+$"{stud.Exams.Count + 1}")));
                         contGrad = false;
                         break;
                     default:
@@ -131,30 +185,85 @@ public class Student:ReportCard
                 switch (option)
                 {
                     case "quiz":
-                        for (int q = 0; q < stud.Quizzes.Count; q++)
+                        if (stud.Quizzes.Count < 1)
                         {
-                            Console.WriteLine($"{q+1}) -> Quizz Grade: {stud.Quizzes[q]}");
-                        }
-                        bool contDelQuiz = true;
-                        while (contDelQuiz)
-                        {
-                            byte quizInd = byte.Parse(Functions.GetExactVal("int", "1", "only numbers", "number of the quiz you want to Delete:"));
-                            if (quizInd >= 1 && (quizInd == 1 || quizInd <= stud.Quizzes.Count - 1))
+                            Console.WriteLine("There are no quizzes to delete, press a Key to return");
+                            contGrad = false;
+                            Console.ReadKey();
+                        } else {
+                            for (int q = 0; q < stud.Quizzes.Count; q++)
                             {
-                                stud.Quizzes.RemoveAt(quizInd-1);
-                                contDelQuiz = false;
-                                contGrad = false;
-                            } else
+                                Console.WriteLine($"{q+1}) -> Quizz Grade: {stud.Quizzes[q]}");
+                            }
+                            bool contDelQuiz = true;
+                            while (contDelQuiz)
                             {
-                                Console.Write("Enter a number between [1-{0}] to delete this grade", stud.Quizzes.Count);
+                                byte quizInd = byte.Parse(Functions.GetExactVal("int", "1", "only numbers", "number of the quiz you want to Delete:"));
+                                if (quizInd >= 1 && quizInd <= stud.Quizzes.Count)
+                                {
+                                    stud.Quizzes.RemoveAt(quizInd-1);
+                                    contDelQuiz = false;
+                                    contGrad = false;
+                                } else
+                                {
+                                    Console.Write("Enter a number between [1-{0}] to delete this grade", stud.Quizzes.Count);
+                                }
                             }
                         }
                         break;
                     case "task":
-                        /* stud.Tasks.Add(float.Parse(Functions.GetExactVal("float", "1-4", "only numbers", "Task Grade #"+$"{stud.Tasks.Count + 1}"))); */
+                        if (stud.Tasks.Count < 1)
+                        {
+                            Console.WriteLine("There are no Task to delete, press a Key to return");
+                            contGrad = false;
+                            Console.ReadKey();
+                        } else {
+                            for (int q = 0; q < stud.Tasks.Count; q++)
+                            {
+                                Console.WriteLine($"{q+1}) -> Task Grade: {stud.Tasks[q]}");
+                            }
+                            bool contDelTask = true;
+                            while (contDelTask)
+                            {
+                                byte taskInd = byte.Parse(Functions.GetExactVal("int", "1", "only numbers", "number of the task you want to Delete:"));
+                                if (taskInd >= 1 && taskInd <= stud.Tasks.Count)
+                                {
+                                    stud.Tasks.RemoveAt(taskInd-1);
+                                    contDelTask = false;
+                                    contGrad = false;
+                                } else
+                                {
+                                    Console.Write("Enter a number between [1-{0}] to delete this grade", stud.Tasks.Count);
+                                }
+                            }
+                        }
                         break;
                     case "exam":
-                        /* stud.Exams.Add(float.Parse(Functions.GetExactVal("float", "1-3", "only numbers", "Exam Grade #"+$"{stud.Exams.Count + 1}"))); */
+                        if (stud.Exams.Count < 1)
+                        {
+                            Console.WriteLine("There are no Exam to delete, press a Key to return");
+                            contGrad = false;
+                            Console.ReadKey();
+                        } else {
+                            for (int q = 0; q < stud.Exams.Count; q++)
+                            {
+                                Console.WriteLine($"{q+1}) -> Exam Grade: {stud.Exams[q]}");
+                            }
+                            bool contDelExam = true;
+                            while (contDelExam)
+                            {
+                                byte examInd = byte.Parse(Functions.GetExactVal("int", "1", "only numbers", "number of the task you want to Delete:"));
+                                if (examInd >= 1 && examInd <= stud.Exams.Count)
+                                {
+                                    stud.Exams.RemoveAt(examInd-1);
+                                    contDelExam = false;
+                                    contGrad = false;
+                                } else
+                                {
+                                    Console.Write("Enter a number between [1-{0}] to delete this grade", stud.Exams.Count);
+                                }
+                            }
+                        }
                         break;
                     default:
                         Console.WriteLine("Invalid Opcion, plis enter a valid opcion !!!s");
@@ -168,7 +277,6 @@ public class Student:ReportCard
         }
         return students;
     }  
-
 
 
 

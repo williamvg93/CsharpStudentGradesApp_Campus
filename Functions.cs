@@ -29,11 +29,25 @@ namespace studentGrades
             Console.WriteLine("{0,30}", " Manage Student \n");
             Console.WriteLine("{0,3}", " 1) -> Add Student");
             Console.WriteLine("{0,3}", " 2) -> Delete Student");
-            Console.WriteLine("{0,3}", " 3) -> View Student List");
-            Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
+            Console.WriteLine("{0,3}", " 3) -> Update Student");
+            Console.WriteLine("{0,3}", " 4) -> View Student List");
+            Console.WriteLine("{0,3}", " 5) -> Back to Main Menu");
             Console.WriteLine("Enter the number of the option you want: ");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
         }
+
+        public static byte EditMenu(){
+            Console.Clear();
+            Console.WriteLine("{0,30}", " Manage Student \n");
+            Console.WriteLine("{0,3}", " 1) -> Add Student");
+            Console.WriteLine("{0,3}", " 2) -> Delete Student");
+            Console.WriteLine("{0,3}", " 3) -> Update Student");
+            Console.WriteLine("{0,3}", " 4) -> View Student List");
+            Console.WriteLine("{0,3}", " 5) -> Back to Main Menu");
+            Console.WriteLine("Enter the number of the option you want: ");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
+        }
+
         public static byte GradetMenu(){
             Console.Clear();
             Console.WriteLine("{0,30}", " Manage Student Grades \n");
@@ -117,6 +131,15 @@ namespace studentGrades
                     newData = Regex.Replace(newData, @"\s+", " ").Trim();
                     Console.WriteLine(newData);
                     contGetExa = false;
+                    if (valType == "float")
+                    {
+                        if(float.Parse(newData) <= 5 && float.Parse(newData) >= 0 ){
+                            contGetExa = false;
+                        } else {
+                            Console.WriteLine("Remember thah only numbers between (0 and 5) are Allowed");
+                            contGetExa = true;
+                        }
+                    }
                 } else {
                     if (valType == "float")
                     {

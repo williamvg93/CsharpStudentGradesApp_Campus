@@ -5,18 +5,9 @@
     "Email": "sonico_5071@hotmail.com",
     "Age": 30,
     "Address": "Cra 3# 46-12 campohermoso",
-    "Quizzes": [
-      5.0,
-      3.7,
-      4.9
-    ],
-    "Tasks": [
-      4.9,
-      4.3
-    ],
-    "Exams": [
-      4.3
-    ]
+    "Quizzes": [],
+    "Tasks": [],
+    "Exams": []
   },
   {
     "Code": "1099524125",
@@ -24,15 +15,8 @@
     "Email": "natalia@gmail.com",
     "Age": 24,
     "Address": "cra 0 oc # 100 - 52 campohermoso",
-    "Quizzes": [
-      3.0,
-      4.5
-    ],
-    "Tasks": [
-    ],
-    "Exams": [
-      3.9,
-      4.4
-    ]
+    "Quizzes": [],
+    "Tasks": [],
+    "Exams": []
   }
 ]
