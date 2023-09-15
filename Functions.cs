@@ -76,7 +76,6 @@ namespace studentGrades
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Exam Option: "));
         }
 
-
         
         public static string GetExactVal(string valType, string dataLen, string msgRestric, string msg){
             string newData = null;
@@ -100,7 +99,7 @@ namespace studentGrades
                     /* regExp = @"^[0-9]+([\.\,][0-9]{"+dataLen+"})?$"; */
 
                     /* regExp = @"^[0-9]*(?:\.\,[0-9]*)?$"; */
-                    regExp = @"^[0-9]+\,[0-9]+$";
+                    regExp = @"^([0-5]{1})+\.[0-9]{1,3}$";
                     break;
                 default:
                     regExp = @"^[\s\S]{"+dataLen+"}$";
@@ -119,7 +118,12 @@ namespace studentGrades
                     Console.WriteLine(newData);
                     contGetExa = false;
                 } else {
-                        Console.WriteLine($"{msgRestric} are allowed, The {msg} must be at least {dataLen} characters");   
+                    if (valType == "float")
+                    {
+                        Console.WriteLine($"{msgRestric} are allowed, the allowed format is: (4.4), Remember thah only numbers between (0 and 5) are Allowed.");
+                    } else {
+                        Console.WriteLine($"{msgRestric} are allowed, The {msg} must be at least {dataLen} characters.");   
+                    }
                 }
             }
             return newData;
