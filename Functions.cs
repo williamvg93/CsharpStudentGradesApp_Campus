@@ -10,7 +10,7 @@ namespace studentGrades
     public class Functions
     {
         public static byte MainMenu(){
-            // Console.Clear();
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("{0,40}", "-------------------------");
             Console.WriteLine("{0,40}", "----- Student Grades ----");
@@ -21,18 +21,16 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 2) -> Manage Student Grades");
             Console.WriteLine("{0,3}", " 3) -> Generate Grade Report");
             Console.WriteLine("{0,3}", " 4) -> Exit App \n");
-            return Byte.Parse(Console.ReadLine());
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Main Menu Option: "));
         }
-
         public static byte StudentMenu(){
             Console.Clear();
             Console.WriteLine("{0,30}", " Manage Student \n");
             Console.WriteLine("{0,3}", " 1) -> Add Student");
-            Console.WriteLine("{0,3}", " 2) -> Delete Student");
-            Console.WriteLine("{0,3}", " 3) -> Update Student");
+            Console.WriteLine("{0,3}", " 2) -> Update Student");
+            Console.WriteLine("{0,3}", " 3) -> Delete Student");
             Console.WriteLine("{0,3}", " 4) -> View Student List");
-            Console.WriteLine("{0,3}", " 5) -> Back to Main Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
+            Console.WriteLine("{0,3}", " 5) -> Back to Main Menu\n");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
         }
 
@@ -43,8 +41,7 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 2) -> Delete Student");
             Console.WriteLine("{0,3}", " 3) -> Update Student");
             Console.WriteLine("{0,3}", " 4) -> View Student List");
-            Console.WriteLine("{0,3}", " 5) -> Back to Main Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
+            Console.WriteLine("{0,3}", " 5) -> Back to Main Menu\n");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Menu Option: "));
         }
 
@@ -54,8 +51,7 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 1) -> Manage Quiz Grade");
             Console.WriteLine("{0,3}", " 2) -> Manage Tasks Grade");
             Console.WriteLine("{0,3}", " 3) -> Manage Exam Garde");
-            Console.WriteLine("{0,3}", " 4) -> Back to Main Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
+            Console.WriteLine("{0,3}", " 4) -> Back to Main Menu\n");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Menu Option: "));
         }
 
@@ -65,8 +61,7 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 1) -> Add Quiz Grade");
             Console.WriteLine("{0,3}", " 2) -> Edit Quiz Grade");
             Console.WriteLine("{0,3}", " 3) -> Delete Quiz Garde");
-            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
+            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu\n");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Quiz Option: "));
         }
         public static byte TaskGradMen(){
@@ -75,8 +70,7 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 1) -> Add Task Grade");
             Console.WriteLine("{0,3}", " 2) -> Edit Task Grade");
             Console.WriteLine("{0,3}", " 3) -> Delete Task Garde");
-            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
+            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu\n");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Task Option: "));
         }
         public static byte ExamGradMen(){
@@ -85,12 +79,19 @@ namespace studentGrades
             Console.WriteLine("{0,3}", " 1) -> Add Exam Grade");
             Console.WriteLine("{0,3}", " 2) -> Edit Exam Grade");
             Console.WriteLine("{0,3}", " 3) -> Delete Exam Garde");
-            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu");
-            Console.WriteLine("Enter the number of the option you want: ");
+            Console.WriteLine("{0,3}", " 4) -> Back to Student Grade Menu\n");
             return Byte.Parse(GetExactVal("int", "1", "only numbers", "Grade Exam Option: "));
         }
+            public static byte GradeReportMenu(){
+            Console.Clear();
+            Console.WriteLine("{0,30}", "Student Grade Report \n");
+            Console.WriteLine("{0,3}", " 1) -> View Student List");
+            Console.WriteLine("{0,3}", " 2) -> Generate Student Grade Report");
+            Console.WriteLine("{0,3}", " 3) -> Generate Final Student Grade Report");
+            Console.WriteLine("{0,3}", " 4) -> Back to Main Menu\n");
+            return Byte.Parse(GetExactVal("int", "1", "only numbers", "Student Grade Option: "));
+        }
 
-        
         public static string GetExactVal(string valType, string dataLen, string msgRestric, string msg){
             string newData = null;
             string regExp;
@@ -109,19 +110,14 @@ namespace studentGrades
                     regExp = @"^[0-9]{"+dataLen+"}$";
                     break;
                 case "float":
-/*                     regExp = @"^[0-9\.]{"+dataLen+"}$"; */
-                    /* regExp = @"^[0-9]+([\.\,][0-9]{"+dataLen+"})?$"; */
-
-                    /* regExp = @"^[0-9]*(?:\.\,[0-9]*)?$"; */
-                    regExp = @"^([0-5]{1})+\.[0-9]{1,3}$";
+                    regExp = @"^([0-5]{1})+\,[0-9]{1,3}$";
                     break;
                 default:
                     regExp = @"^[\s\S]{"+dataLen+"}$";
                     break;
             }
-            Console.WriteLine(regExp);
+            /* Console.WriteLine(regExp); */
             bool contGetExa = true;
-
             while (contGetExa)
             {
                 Console.WriteLine($"Enter the {msg}");
@@ -129,7 +125,7 @@ namespace studentGrades
                 if (Regex.IsMatch(newData, regExp))
                 {
                     newData = Regex.Replace(newData, @"\s+", " ").Trim();
-                    Console.WriteLine(newData);
+                    /* Console.WriteLine(newData); */
                     contGetExa = false;
                     if (valType == "float")
                     {
@@ -143,7 +139,7 @@ namespace studentGrades
                 } else {
                     if (valType == "float")
                     {
-                        Console.WriteLine($"{msgRestric} are allowed, the allowed format is: (4.4), Remember thah only numbers between (0 and 5) are Allowed.");
+                        Console.WriteLine($"{msgRestric} are allowed, the allowed format is: (4,4), Remember thah only numbers between (0 and 5) are Allowed.");
                     } else {
                         Console.WriteLine($"{msgRestric} are allowed, The {msg} must be at least {dataLen} characters.");   
                     }
@@ -178,16 +174,6 @@ namespace studentGrades
             Mantener carecteres como estan en el archivo JSON  
             */
         }
-
-
+        
     }
 }
-
-/* 
-^[\s\S]{0,25}$
-usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-password: /^.{4,12}$/, // 4 a 12 digitos.
-correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-telefono: /^\d{7,14}$/ // 7 a 14 numeros.
- */

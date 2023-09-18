@@ -1,0 +1,49 @@
+[
+  {
+    "Code": "1098739317",
+    "Name": "William Villamizar Garces",
+    "Email": "sonico_5071@hotmail.com",
+    "Age": 30,
+    "Address": "Cra 3 # 46-12 Campohermoso",
+    "Quizzes": [
+      5.0,
+      4.5,
+      4.7,
+      4.3
+    ],
+    "Tasks": [
+      4.8,
+      4.6
+    ],
+    "Exams": [
+      4.5,
+      4.3,
+      4.4
+    ]
+  },
+  {
+    "Code": "1099524125",
+    "Name": "Derly Natalia Correa Rondon",
+    "Email": "derly.correa@hotmail.com",
+    "Age": 24,
+    "Address": "cra 0 oc # 100 - 52 campohermoso",
+    "Quizzes": [],
+    "Tasks": [
+      4.2,
+      4.9
+    ],
+    "Exams": []
+  },
+  {
+    "Code": "123456",
+    "Name": "usuario prueba uno",
+    "Email": "prueba@correo.com",
+    "Age": 20,
+    "Address": "direccion casa # 1",
+    "Quizzes": [],
+    "Tasks": [
+      3.9
+    ],
+    "Exams": []
+  }
+]
